@@ -21,7 +21,6 @@ const db = (() => {
 // Express initialization 
 const app = (() => {
 	const _app = express();
-	
 	// Morgan logging middleware
 	_app.use(morgan("dev"));
 
