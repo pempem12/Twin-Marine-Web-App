@@ -35,8 +35,8 @@ const app = (() => {
 	const sess = {
 		  secret: config.tokens.sessionSecret
 		, cookie: {}
-		, resave: false // Force save of session for each request.
-        , saveUninitialized: false // Save a session that is new, but has not been modified
+		, resave: true // Force save of session for each request.
+        , saveUninitialized: true // Save a session that is new, but has not been modified
 	}
 	  
 	// For configuring HTTPS later

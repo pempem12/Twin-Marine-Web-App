@@ -1,2 +1,4 @@
-export const uniqueEmail = 0
-export const loginFail   = 0
+let cur = 0;
+
+export const uniqueEmail = cur++;
+export const loginFail   = cur++;
