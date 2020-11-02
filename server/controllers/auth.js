@@ -84,20 +84,20 @@ export const login = async (req, res) => {
         .then(user => {
             if (user === null) { // Check for missing user
                 res.status(401).json({
-                    error: "Emal/password mismatch"
+                    error: "Email/password mismatch"
                     , code: errorCodes.loginFail
                 });
                 
                 throw new Error("exit"); // Do not continue to password check or comparison
             }
 
-            console.log(pass);
-            console.log(user.password);
             return comparePassword(pass, user.password); // Return password check promise
         })
         .then(isMatch => {
             console.log("Checking match");
             if (isMatch) {
+                req.session.user = { isLoggedIn: true };
+
                 res.status(200).end();
             } else {
                 res.status(401).json({
@@ -112,4 +112,41 @@ export const login = async (req, res) => {
             console.error(err);
             res.status(500).end();
         })
+}
+
+/**
+ * authenticateSession middleware with optional redirect to login page.
+ * @param {Boolean} redirect If true, redirect to the login page if user is not logged.
+ */
+export const authenticateSession = (redirect) => {
+    const hasSession = (req) => {
+        if (req.session.user === undefined) {
+            req.session.user = null;
+
+            return false
+        } else if (req.session.user !== null && req.session.user.isLoggedIn === true) {
+            return true;
+        }
+
+        return false;
+    };
+
+    // if (redirect === true) {
+    return (req, res, next) => {
+        if (hasSession(req)) {
+            next();
+            return;
+        }
+        
+        // User not logged in and a redirect is requested.
+        console.log(req.originalUrl);
+
+        if (redirect === true) {
+            console.log("Do redirect!\n");
+            res.status(302).redirect("/login"); // 302 is redirect found
+        } else {
+            console.log("Don't redirect!\n");
+            res.status(401).send("Unauthorized"); // 401 is unauthorized
+        }
+    }
 }

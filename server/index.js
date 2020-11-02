@@ -2,6 +2,7 @@ import bodyParser from "body-parser"
 import express from "express"
 import morgan from "morgan"
 import mongoose from "mongoose"
+import session from "express-session"
 
 import config from "./config/config.js"
 import { initRoutes } from "./routes/routes.js"
@@ -29,6 +30,22 @@ const app = (() => {
 		extended: true
 	}));
 	_app.use(bodyParser.json());
+
+	// Session middleware
+	const sess = {
+		  secret: config.tokens.sessionSecret
+		, cookie: {}
+		, resave: false // Force save of session for each request.
+        , saveUninitialized: false // Save a session that is new, but has not been modified
+	}
+	  
+	// For configuring HTTPS later
+	if (_app.get('env') === 'production') {
+		// app.set('trust proxy', 1) // trust first proxy (only use if node.js is behind proxy)
+		sess.cookie.secure = true // serve secure cookies
+	}
+	  
+	_app.use(session(sess)) // Use session middleware
 
 	return _app;
 })();
