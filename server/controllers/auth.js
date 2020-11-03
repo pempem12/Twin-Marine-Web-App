@@ -87,7 +87,7 @@ export const login = async (req, res) => {
                     error: "Email/password mismatch"
                     , code: errorCodes.loginFail
                 });
-                
+
                 throw new Error("exit"); // Do not continue to password check or comparison
             }
 
