@@ -22,7 +22,10 @@
     "create-react-app": "^4.0.1",
     "express": "^4.17.1",
     "express-session": "^1.17.1",
+<<<<<<< HEAD
     "jquery": "^3.5.1",
+=======
+>>>>>>> Here lies the login page code
     "mongoose": "^5.10.11",
     "mongoose-unique-validator": "^2.0.3",
     "morgan": "^1.10.0",
