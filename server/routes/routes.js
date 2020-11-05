@@ -10,6 +10,8 @@ import * as userRoutes from "./userRoutes.js"
 const initRoutes = (app) => {
     app.use("/login", express.static("./client/login.html"));
     app.use("/login.html", express.static("./client/login.html"));
+    app.use("/scripts/", express.static("./client/scripts"));
+    app.use("/css/", express.static("./client/css"));
     
     const apiEP = "/api/v1";
     userRoutes.route(app, `${apiEP}/user`);
