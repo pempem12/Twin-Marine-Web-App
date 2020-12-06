@@ -13,7 +13,9 @@ const initRoutes = (app) => {
     
     const apiEP = "/api/v1";
     userRoutes.route(app, `${apiEP}/user`);
+    app.use(`${apiEP}/getList`, (req, res) => { res.json(["hello", "there", "world"]); });
     
+    app.use("/images/", express.static("./client/images"));
     app.use("/", authenticateSession(true), express.static("./client"));
     
     // 404
