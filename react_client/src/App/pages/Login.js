@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
@@ -15,8 +15,8 @@ const Login = (props) => {
             , body: JSON.stringify({ email: email, password: pass })
         })
         .then(response => {
-            if (response.status !== undefined && response.status == 200) {
-                window.location.href = "/list"
+            if (response.status !== undefined && response.status === 200) {
+                window.location.href = "/ship"
             } else {
                 return response.json();
             }
@@ -29,7 +29,7 @@ const Login = (props) => {
         <center className="mt-4">
             <Card style={{width: "50rem"}}>
                 <Card.Body>
-                    <Card.Title>Login</Card.Title>
+                    <Card.Title><img src="/images/DTM.png" width="100%" alt="DTM"></img></Card.Title>
                     <Form>
                         <Form.Group>
                             <label htmlFor="inputEmail">Email address</label>

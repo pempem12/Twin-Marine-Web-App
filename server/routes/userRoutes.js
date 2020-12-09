@@ -11,7 +11,7 @@ export const route = (app, endpoint) => {
     app.post(`${endpoint}/login`, auth.login);
 
     // 
-    app.get(`${endpoint}/auth`, auth.authenticateSession(false), (req, res) => res.status(200).send("Authenticated"));
+    app.get(`${endpoint}/auth`, auth.authenticateSession(false), (req, res) => { res.json({ email: req.session.user.email }) });
 
     // All following routes require the user to be logged in
     app.use(`${endpoint}/*`, auth.authenticateSession(false));

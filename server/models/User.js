@@ -10,6 +10,20 @@ const User_sc = new mongoose.Schema({
 	, shipsPermitted: { type: [mongoose.Schema.Types.ObjectId]}
 })
 
+User_sc.methods.permitShip = function(shipID) {
+	if (!this.shipsPermitted.includes(shipID))
+		this.shipsPermitted.push(shipID);
+
+	return this.save();
+}
+
+User_sc.statics.findByEmail = function(email) {
+	console.log(email);
+	return this.findOne({
+		email: email
+	});
+};
+
 User_sc.plugin(uniqueValidator); // Make email unique
 
 export default mongoose.model("users", User_sc);

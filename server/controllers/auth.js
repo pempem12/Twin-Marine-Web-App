@@ -100,7 +100,8 @@ export const login = async (req, res) => {
         .then(isMatch => {
             console.log("Checking match");
             if (isMatch) {
-                req.session.user = { isLoggedIn: true };
+                req.session.user = { isLoggedIn: true, email: email };
+                console.log(req.session.user);
 
                 res.status(200).end();
             } else {

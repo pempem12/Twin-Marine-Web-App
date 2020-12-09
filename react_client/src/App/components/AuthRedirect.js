@@ -1,15 +1,20 @@
 
-import React, {useState}  from 'react';
+import React  from 'react';
 import RenderOnce from "./RenderOnce"
 
-const MainNavbar = (props) => {
+const AuthRedirect = (setState_User) => {
     RenderOnce(() => {
         fetch("/api/v1/user/auth")
             .then(res => {
-                if (res.status !== undefined && res.status == 401) {
+                if (res.status !== undefined && res.status === 401) {
                     window.location.href = "/login";
+                    return Promise.reject("Redirect to login");
+                } else {
+                    return res.json();
                 }
-            });
+            })
+            .then(user => setState_User(user))
+            .catch(err => console.log(err));
     }) ;
 
     return (
@@ -17,4 +22,4 @@ const MainNavbar = (props) => {
     );
 };
 
-export default MainNavbar;
+export default AuthRedirect;
