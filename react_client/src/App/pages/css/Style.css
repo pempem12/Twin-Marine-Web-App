@@ -1,0 +1,36 @@
+.LoginBox{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.LoginBox__Form{
+    width: 100%;
+}
+
+.LoginBox__Logo{
+    margin: 5%;
+}
+
+.Guests{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Names{
+    width: 60%;
+    max-height: 40vw;
+    overflow: scroll;
+    border: solid black 1px;
+}
+
+.Guests__Button{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+}
+
+

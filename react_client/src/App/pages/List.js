@@ -16,7 +16,6 @@ const List = (props) => {
 
     return (
         <div>
-            <MainNavbar activeKey="list"></MainNavbar>
             <h1>List of new items</h1>
             <div>
                 { list_s.map((item) => {
