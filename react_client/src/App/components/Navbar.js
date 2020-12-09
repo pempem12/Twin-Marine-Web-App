@@ -13,9 +13,10 @@ const MainNavbar = (props) => {
             <Navbar.Toggle aria-controls="dtm-navbar"></Navbar.Toggle>
             <Navbar.Collapse id="dtm-navbar">
                 <Nav className="mr-auto" activeKey={props.activeKey}>
-                    <Nav.Link href="" eventKey="home">Home</Nav.Link>
-                    <Nav.Link href="" eventKey="list">List</Nav.Link>
-                    <Nav.Link href="" eventKey="login">Login</Nav.Link>
+                    <Nav.Link href="./Home" eventKey="home">Home</Nav.Link>
+                    <Nav.Link href="./List" eventKey="list">List</Nav.Link>
+                    <Nav.Link href="./Login" eventKey="login">Login</Nav.Link>
+                    <Nav.Link href="./About" eventKey="about">About</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
