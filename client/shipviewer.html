@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Navbar</title>
+    <title>Ship Viewer</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -68,6 +68,9 @@
         <div id="content">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
+                    <!-- <button type="button" id="sidebarCollapse" class="btn btn-info"> -->
+                        <!-- <i class="fas fa-align-left"></i> -->
+                    <!-- </button> -->
 					<img src="Images/DTM.png" width="200" height="40" alt="DTM">
                     <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fas fa-align-justify"></i>
@@ -90,12 +93,43 @@
                     </div>
                 </div>
             </nav>
-			<button type="button" id="sidebarCollapse" class="btn btn-info">
+			
+			<h3><button type="button" id="sidebarCollapse" class="btn btn-info mr-2" >
                         <i class="fas fa-align-left"></i>
-                    </button>
+                    </button><b> Project Details</b></h3>
+			<h5><b>Vessel Name: Sample Vessel</b></h5>
+			
+			<div class="row">
+			  <div class="col-2" style = "color:MediumTurquoise">IMO Number</div>
+			  <div class="col-2">8888888</div>
+			  <div class="w-100"></div>
+			  <div class="col-2" style = "color:MediumTurquoise">Service Type</div>
+			  <div class="col-2">Construction</div>
+			  <div class="w-100"></div>
+			  <div class="col-2" style = "color:MediumTurquoise">Technician</div>
+			  <div class="col-2">Tom Bruger</div>
+			</div>
+			
+			<br>
+			
+			
+			<h3 id = "3D"><b>3D Model</b>
+			<a class="btn btn-small" style = "border: 2px solid black; float: right" href= "#">
+                Feedback Form</a> </h3>
+			
+			<br>
+			
+			<div class="responsive">
+				<iframe src="https://www.3dvieweronline.com/members/Id9bf31c7ff062936a96d3c8bd1f8f2ff3/JBM3mWHh2jveQW4"></iframe>
+			</div>
+			
+			<br>
+			
+			<a class="btn btn-small" style = "border: 2px solid black; float: right;" href= "#">
+                Fill browser window</a>
         </div>
     </div>
-
+	
     <div class="overlay"></div>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
