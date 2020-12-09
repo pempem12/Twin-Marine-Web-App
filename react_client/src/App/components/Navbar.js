@@ -2,7 +2,6 @@
 import React, {useState}  from 'react';
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
-// import Button from 'react-bootstrap/Button';
 
 const MainNavbar = (props) => {
     return (

@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './pages/Home';
 import List from './pages/List';
+import Login from './pages/Login';
 
 import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -14,6 +15,7 @@ const App = (props) => {
 			<Switch>
 				<Route exact path='/' component={Home} />
 				<Route path='/list' component={List} />
+				<Route path='/login' component={Login} />
 			</Switch>
 		</div>
 	);

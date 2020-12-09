@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import RenderOnce from "../components/RenderOnce"
 import MainNavbar from "../components/Navbar"
+import AuthRedirect from "../components/AuthRedirect"
 
 const List = (props) => {
     const [list_s, list_setState] = useState([]);
+
+    AuthRedirect();
 
     // Fill the list only one time (don't update whenever the state changes)
     RenderOnce(() => {

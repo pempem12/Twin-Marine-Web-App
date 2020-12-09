@@ -2,11 +2,14 @@ import mongoose from "mongoose"
 import uniqueValidator from "mongoose-unique-validator"
 
 const User_sc = new mongoose.Schema({
-      email: { type: String, required: true, unique: true }
-    , password: { type: String, required: true }
-    , isParent: { type: Boolean, required: true }
+		email: { type: String, required: true, unique: true }
+	, password: { type: String, required: true }
+	, isParent: { type: Boolean, required: true }
+	, parent: { type: mongoose.Schema.Types.ObjectId }
+	, shipsOwned: { type: [mongoose.Schema.Types.ObjectId]}
+	, shipsPermitted: { type: [mongoose.Schema.Types.ObjectId]}
 })
 
-User_sc.plugin(uniqueValidator);
+User_sc.plugin(uniqueValidator); // Make email unique
 
 export default mongoose.model("users", User_sc);

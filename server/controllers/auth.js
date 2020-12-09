@@ -4,7 +4,6 @@ import config from "../config/config.js"
 import * as errorCodes from "../errorCodes.js"
 import User_m from "../models/User.js" 
 
-
 const SALT_WORK_FACTOR = 10
 
 // Returns a promise to create the hash/salt pair
@@ -72,6 +71,11 @@ export const createParentUser = async (req, res) => {
             console.error(err); 
             res.status(500).end();
         });
+}
+
+export const createGuestUser = async (req, res) => {
+    const email = req.body.email;
+    // const parent
 }
 
 export const login = async (req, res) => {
