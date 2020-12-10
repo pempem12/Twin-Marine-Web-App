@@ -5,7 +5,7 @@
   "main": "server/index.js",
   "scripts": {
     "startserver": "nodemon server/index.js",
-    "start": "concurrently --kill-others \"npm run startserver\" \"cd react_client & npm start\"",
+    "start": "npm run startserver",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

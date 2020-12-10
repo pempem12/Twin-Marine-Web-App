@@ -4,11 +4,34 @@ import MainNavbar from "../components/Navbar"
 import AuthRedirect from "../components/AuthRedirect"
 
 import "../static/css/nav.css";
+import RenderOnce from '../components/RenderOnce';
 
 const ShipViewer = (props) => {
 	const [ user_st, setState_User ] = useState({ email: "" });
+	const [ ships_st, setState_ships ] = useState([]);
+	const [ curShip_st, setState_curShip ] = useState({
+		  _id: ""
+		, vesselName: "No ship"
+		, imoNum: ""
+		, serviceType: ""
+		, technician: ""
+		, iframe: ""
+		, __v: 0
+	});
 
 	AuthRedirect(setState_User);
+
+	RenderOnce(() => {
+		fetch("/api/v1/ship/permit")
+			.then(res => res.json())
+			.then(ships => {
+				setState_ships(ships);
+
+				if (ships.length != 0)
+					setState_curShip(ships[0]);
+			})
+			.catch(err => console.log(err));
+	});
 
 	const setSidebar = (show) => {
 		if (show === true) {
@@ -33,57 +56,55 @@ const ShipViewer = (props) => {
 					<h3>Digital Twin Marine</h3>
 				</div>
 
-				<ul className="list-unstyled components">
-					<li>
-						<a href="/" data-toggle="collapse"  aria-expanded="false">Select Ship<i className="fas fa-angle-down rotate-icon"></i></a>
-						<ul className="collapse list-unstyled" id="pageSubmenu">
-							<li>
-								<a href="/">Ship 1</a>
-							</li>
-							<li>
-								<a href="/">Ship 2</a>
-							</li>
-							<li>
-								<a href="/">Ship 3</a>
-							</li>
-						</ul>
-					</li>
+				<ul className="list-group">
+					<li className="list-group-item">Select Ship</li>
+					{ships_st.map((ship, index) => {
+						return (
+							<button type="button" 
+								className={"list-group-item list-group-item-action ml-4"
+									 + (curShip_st._id === ships_st[index]._id ? " active" : "")}
+								onClick={() => { setState_curShip(ships_st[index]); setSidebar(false); }}
+							>{ship.vesselName}
+							</button>
+						);
+					})}
 				</ul>
 			</nav>
-
-			<h3><button type="button" id="sidebarCollapse" className="btn btn-info mr-2" onClick={e => setSidebar(true) }>
-				<i className="fas fa-align-left"></i>
-			</button><b> Project Details</b></h3>
-
-			<h5><b>Vessel Name: Sample Vessel</b></h5>
-			
 			<div className="container">
-				<div className="row">
-					<div className="col-xl-2 col-lg-2 col-sm-3" style={{color: "MediumTurquoise"}}>IMO Number</div>
-					<div className="col-5">8888888</div>
-				</div>
-				<div className="row">
-					<div className="col-xl-2 col-lg-2 col-sm-3" style={{color: "MediumTurquoise"}}>Service Type</div>
-					<div className="col-5">Construction</div>
-				</div>
-				<div className="row">
-					<div className="col-xl-2 col-lg-2 col-sm-3" style={{color: "MediumTurquoise"}}>Technician</div>
-					<div className="col-5">Tom Bruger</div>
-				</div>
-			</div>
-	
-    		<div id="overlay"></div>
+				<h3><button type="button" id="sidebarCollapse" className="btn btn-info mr-2" onClick={e => setSidebar(true) }>
+					<i className="fas fa-align-left"></i>
+				</button><b> Project Details</b></h3>
 
-			<h3 id = "3D"><b>3D Model</b>
-			<a className="btn btn-small" style={{border: "2px solid black", float: "right"}} href= "/">
-				Feedback Form</a></h3>
-			
-			<div className="responsive" style={{width: "100%", height: "90vh"}}>
-				<iframe src="https://www.3dvieweronline.com/members/Id9bf31c7ff062936a96d3c8bd1f8f2ff3/JBM3mWHh2jveQW4"></iframe>
+				<h5><b>Vessel Name: {curShip_st.vesselName}</b></h5>
+				
+				<div className="container">
+					<div className="row">
+						<div className="col-xl-2 col-lg-2 col-sm-3" style={{color: "MediumTurquoise"}}>IMO Number</div>
+						<div className="col-5">{curShip_st.imoNum}</div>
+					</div>
+					<div className="row">
+						<div className="col-xl-2 col-lg-2 col-sm-3" style={{color: "MediumTurquoise"}}>Service Type</div>
+						<div className="col-5">{curShip_st.serviceType}</div>
+					</div>
+					<div className="row">
+						<div className="col-xl-2 col-lg-2 col-sm-3" style={{color: "MediumTurquoise"}}>Technician</div>
+						<div className="col-5">{curShip_st.technician}</div>
+					</div>
+				</div>
+		
+				<div id="overlay"></div>
+
+				<h3 id = "3D"><b>3D Model</b>
+				<a className="btn btn-small" style={{border: "2px solid black", float: "right"}} href= "/">
+					Feedback Form</a></h3>
+				
+				<div className="responsive" style={{width: "100%", height: "90vh"}}>
+					<iframe src={curShip_st.iframe}></iframe>
+				</div>
+				
+				<a className="btn btn-small" style={{border: "2px solid black", float: "right"}} href= "#">
+					Fill browser window</a>
 			</div>
-			
-			<a className="btn btn-small" style={{border: "2px solid black", float: "right"}} href= "#">
-				Fill browser window</a>
 		</div>
 	);
 };

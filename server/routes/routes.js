@@ -15,7 +15,7 @@ const initRoutes = (app) => {
 
     app.use(`${apiEP}/getList`, (req, res) => { res.json(["hello", "there", "world"]); });
     
-    app.use("/images/", express.static("./client/images"));
+    app.use("/images/", express.static("./react_client/src/App/static/images"));
     app.use("/js/", express.static("./react_client/src/App/static/js"));
     // app.use("/", authenticateSession(true), express.static("./client"));
     

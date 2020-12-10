@@ -12,9 +12,9 @@ const MainNavbar = (props) => {
             <Navbar.Toggle aria-controls="dtm-navbar"></Navbar.Toggle>
             <Navbar.Collapse id="dtm-navbar">
                 <Nav className="ml-auto" activeKey={props.activeKey}>
-                    <Nav.Link href="" as="button" className="btn btn-outline-secondary"><i className="fas fa-plus"></i> Request New Service</Nav.Link>
-                    <Nav.Link href="" eventKey="ship">Ship Viewer</Nav.Link>
-                    <Nav.Link href="" eventKey="guests">Guest Management</Nav.Link>
+                    <Nav.Link href="#" as="button" className="btn btn-outline-secondary"><i className="fas fa-plus"></i> Request New Service</Nav.Link>
+                    <Nav.Link href="/ship" eventKey="ship">Ship Viewer</Nav.Link>
+                    <Nav.Link href="/guests" eventKey="guests">Guest Management</Nav.Link>
                     <Nav.Link><i className="fas fa-user-circle" as="p"></i> {props.email}</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
